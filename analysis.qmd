@@ -1,5 +1,56 @@
 ---
 title: "Untitled"
+author: "Afnan Khan"
 format: html
+execute:
+  echo: false
 ---
 
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+
+```{r}
+
+#| echo: false
+#| warning: false
+library(tidyverse)
+library(extrafont)
+
+ggplot(data = iris, aes(x = Sepal.Length, y = Petal.Length, color = Species, shape = Species)) +
+  geom_point(size = 5, alpha = 0.85, stroke = 1.5) +
+  geom_smooth(method = "loess", se = TRUE, aes(fill = Species), alpha = 0.15, formula = y ~ x) +
+  scale_color_manual(values = c("setosa" = "#E91E63", 
+                               "versicolor" = "#2196F3", 
+                               "virginica" = "#FFCA28")) +
+  scale_fill_manual(values = c("setosa" = "#E91E63", 
+                              "versicolor" = "#2196F3", 
+                              "virginica" = "#FFCA28")) +
+  annotate("text", x = 4.5, y = 7, label = "Species Differentiation", 
+           size = 5, color = "#333333", fontface = "bold", family = "Arial") +
+  labs(title = "Iris Morphology: Sepal vs. Petal Length",
+       subtitle = "Distinct Patterns Across Species",
+       x = "Sepal Length (cm)",
+       y = "Petal Length (cm)",
+       color = "Species",
+       shape = "Species",
+       fill = "Species") +
+  theme_minimal(base_family = "Arial") +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 20, face = "bold", color = "#1A237E"),
+    plot.subtitle = element_text(hjust = 0.5, size = 14, color = "#3F51B5", margin = margin(b = 12)),
+    axis.title = element_text(size = 13, face = "bold", color = "#333333"),
+    axis.text = element_text(size = 11, color = "#333333"),
+    legend.position = "top",
+    legend.title = element_text(face = "bold", size = 12),
+    legend.background = element_rect(fill = "white", color = NA),
+    panel.grid.major = element_line(color = "#E0E0E0", linetype = "dotted"),
+    panel.grid.minor = element_blank(),
+    panel.border = element_rect(color = "#B0B0B0", fill = NA),
+    plot.background = element_rect(fill = "#E8EAF6", color = NA),
+    panel.background = element_rect(fill = "#F5F7FA")
+  )
+
+```
